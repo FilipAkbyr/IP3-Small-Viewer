@@ -1,0 +1,16 @@
+
+<h1>Přihlášení</h1>
+
+    <form method="post">
+    {{^login}}
+        <label for="username">Jmeno</label>
+        <input id="username" name="username" type="text">
+        <label for="password">Heslo</label>
+        <input id="password" name="password" type="password">
+        <button type="submit">Přihlásit se</button>
+    {{/login}}
+    {{#login}}
+        Přihlášen uživatel {{user}}
+    {{/login}}
+</form>
+{{error}}

@@ -1,0 +1,14 @@
+<h1>Prohlížeč databáze</h1>
+
+<nav class="border">
+    <ul>
+        <li><a href="/room/list.php">Místnosti</a></li>
+        <li><a href="/employee/list.php">Lidé</a></li>
+    </ul>
+    {{#logged}}
+        <a class="btn btn-primary" href="/logout.php">Odhlásit se</a>
+    {{/logged}}
+    {{^logged}}
+        <a class="btn btn-primary" href="/index.php">Přihlásit se</a>
+    {{/logged}}
+</nav>
