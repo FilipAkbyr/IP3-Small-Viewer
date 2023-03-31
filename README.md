@@ -2,5 +2,6 @@
 
 Run composer update 
 
-Login: Admin
-Pass: 123456
+Login: Admin, User
+Pass: 123456, 123456
+
