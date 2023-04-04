@@ -103,6 +103,19 @@ class Room
         if (!$this->no)
             $errors['no'] = "Číslo nemůže být prázdné";
 
+        $query = "SELECT * FROM `" . self::$table . "` WHERE `no` = :no AND `room_id` != :room_id";
+        $pdo = PDOProvider::get();
+
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([
+            'no' => $this->no,
+            'room_id' => $this->room_id,
+        ]);
+
+        if ($stmt->rowCount() > 0){
+            $errors['no'] = "Číslo už má jiná místnost";
+        }
+
         if (is_string($this->phone))
             $this->phone = trim($this->phone);
         if (!$this->phone)

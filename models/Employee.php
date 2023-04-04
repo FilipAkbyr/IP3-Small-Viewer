@@ -146,7 +146,7 @@ class Employee
         return $employee;
     }
 
-    public function validate(array &$errors = []): bool
+    public function validate(array &$errors = []): int
     {
         if (is_string($this->name))
             $this->name = trim($this->name);
@@ -168,6 +168,9 @@ class Employee
         if (!$this->wage)
             $errors['wage'] = "Plat nemůže být prázdný";
 
+        if ($this->wage < 0)
+            $errors['wage'] = "Plat nemůže být záporný";
+
         if (is_string($this->room))
             $this->room = trim($this->room);
         if (!$this->room)
@@ -183,7 +186,7 @@ class Employee
         if (!$this->pass)
             $errors['pass'] = "Heslo nemůže být prázdné";
 
-        return count($errors) === 0;
+        return count($errors);
     }
 
     public function update(): bool
@@ -192,6 +195,7 @@ class Employee
         $pdo = PDOProvider::get();
 
         $stmt = $pdo->prepare($query);
+
         return $stmt->execute([
             'employee_id' => $this->employee_id,
             'name' => $this->name,
@@ -206,13 +210,13 @@ class Employee
 
     }
 
-    public function insert(): bool
+    public function insert(): int|bool
     {
         $query = "INSERT INTO `" . self::$table . "` (`name`, `surname`, `job`, `wage`, `room`, `login`, `pass`, `admin`) VALUES (:name, :surname, :job, :wage, :room, :login, :pass, :admin)";
         $pdo = PDOProvider::get();
 
         $stmt = $pdo->prepare($query);
-        return $stmt->execute([
+        $result = $stmt->execute([
             'name' => $this->name,
             'surname' => $this->surname,
             'job' => $this->job,
@@ -220,8 +224,14 @@ class Employee
             'room' => $this->room,
             'login' => $this->login,
             'pass' => hash('sha256', $this->pass),
-            'admin' => $this->admin,
+            'admin' => $this->admin ? "1" : "0",
         ]);
 
+        if ($result == false){
+            return false;
+        }
+
+
+        return $pdo->lastInsertId();
     }
 }
