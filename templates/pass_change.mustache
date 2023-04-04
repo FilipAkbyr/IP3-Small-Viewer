@@ -1,0 +1,15 @@
+<h1>Změna hesla</h1>
+
+<form method="post">
+    <label for="pass">Staré Heslo</label>
+    {{#errors.oldpass}}<div class="d-block invalid-feedback">{{errors.name}}</div>{{/errors.oldpass}}
+    <input type="password" id="pass" name="oldpass">
+    <label for="newpass">Nové Heslo</label>
+    {{#errors.newpass}}<div class="d-block invalid-feedback">{{errors.newpass}}</div>{{/errors.newpass}}
+    <input type="password" id="newpass" name="newpass">
+    <label for="newpassagain">Nové Heslo znovu</label>
+    {{#errors.newpassagain}}<div class="d-block invalid-feedback">{{errors.newpassagain}}</div>{{/errors.newpassagain}}
+    <input type="password" id="newpassagain" name="newpassagain">
+    <button type="submit">Odeslat</button>
+    {{#errors.passmatch}}<div class="d-block invalid-feedback">{{errors.passmatch}}</div>{{/errors.passmatch}}
+</form>

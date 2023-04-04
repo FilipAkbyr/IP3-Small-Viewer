@@ -17,18 +17,18 @@
             <td>{{surname}}</td>
             <td>{{job}}</td>
             <td>{{wage}}</td>
-            <td>{{room}}</td>
+            <td>{{room_name}} {{room_no}}</td>
             <td>{{login}}</td>
 
             <td>
                 <form method="get" action="update.php">
-                    <input type="submit" value="Upravit" class="btn btn-info">
+                    <input type="submit" value="Upravit" class="btn btn-info" {{^enabled_admin}}disabled{{/enabled_admin}}>
                     <input type="hidden" name="employee_id" value="{{employee_id}}">
                 </form>
             </td>
             <td>
                 <form method="post" action="delete.php">
-                    <input type="submit" value="Smazat" class="btn btn-danger" onclick="return confirm('Opravdu chcete smazat zaměstnance?')">
+                    <input type="submit" value="Smazat" class="btn btn-danger" onclick="return confirm('Opravdu chcete smazat zaměstnance?')" {{^enabled_admin}}disabled{{/enabled_admin}}>
                     <input type="hidden" name="employee_id" value="{{employee_id}}">
                 </form>
             </td>

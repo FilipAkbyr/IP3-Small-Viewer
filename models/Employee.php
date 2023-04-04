@@ -200,8 +200,8 @@ class Employee
             'wage' => $this->wage,
             'room' => $this->room,
             'login' => $this->login,
-            'pass' => hash('sha256', $this->pass),
-            'admin' => $this->admin,
+            'pass' => $this->pass,
+            'admin' => $this->admin ? "1" : "0",
         ]);
 
     }

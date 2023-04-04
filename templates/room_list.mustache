@@ -15,13 +15,13 @@
             <td>{{phone}}</td>
             <td>
                 <form method="get" action="update.php">
-                    <input type="submit" value="Upravit" class="btn btn-info">
+                    <input type="submit" value="Upravit" class="btn btn-info" {{^admin}}disabled{{/admin}}>
                     <input type="hidden" name="room_id" value="{{room_id}}">
                 </form>
             </td>
             <td>
-                <form method="post" action="delete.php">
-                    <input type="submit" value="Smazat" class="btn btn-danger" onclick="return confirm('Opravdu chcete smazat místnost?')">
+                <form method="post" action="delete.php" >
+                    <input type="submit" value="Smazat" class="btn btn-danger" onclick="return confirm('Opravdu chcete smazat místnost?')" {{^admin}}disabled{{/admin}}>
                     <input type="hidden" name="room_id" value="{{room_id}}">
                 </form>
             </td>

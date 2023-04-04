@@ -34,6 +34,16 @@ class Key {
             }, $stmt->fetchAll(PDO::FETCH_ASSOC));
     }
 
+    static function allKeysOfRoom(int $room) : array {
+        $query = "SELECT * FROM `key` WHERE `room` = :room";
+        $stmt = PDOProvider::get()->prepare($query);
+        $stmt->execute(['room' => $room]);
+        return array_map(
+            function ($item) {
+                return new Key($item);
+            }, $stmt->fetchAll(PDO::FETCH_ASSOC));
+    }
+
     public static function employeeHasKey($employee_id, $room_id)
     {
         $query = "SELECT * from `key` WHERE `employee` =:employee and `room` = :room";

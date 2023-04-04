@@ -2,7 +2,7 @@
     {{#room.room_id}}Upravit místnost{{/room.room_id}}
     {{^room.room_id}}Založit místnost{{/room.room_id}}
 </h2>
-<form method="post">
+<form method="post" autocomplete="off">
 <!--    id-->
     <input type="hidden" name="room_id" value="{{room.room_id}}">
 

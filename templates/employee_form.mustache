@@ -2,7 +2,7 @@
     {{#employee.employee_id}}Upravit zaměstnance{{/employee.employee_id}}
     {{^employee.employee_id}}Založit zaměstnance{{/employee.employee_id}}
 </h2>
-<form method="post">
+<form method="post" autocomplete="off">
     <!--    id-->
     <input type="hidden" name="employee_id" value="{{employee.employee_id}}">
 
@@ -29,11 +29,17 @@
         <input type="text" class="form-control" id="wage" name="wage"  value="{{employee.wage}}" required>
         {{#errors.wage}}<div class="d-block invalid-feedback">{{errors.wage}}</div>{{/errors.wage}}
     </div>
+
     <div class="form-group">
-        <label for="no">Místnost</label>
-        <input type="text" class="form-control" id="room" name="room"  value="{{employee.room}}" required>
+        <label for="room">Místnost</label>
+        <select name="room" id="room" required>
+            {{#employee_rooms}}
+                <option value="{{room_id}}" {{#selected}}selected{{/selected}}>{{no}}</option>
+            {{/employee_rooms}}
+        </select>
         {{#errors.room}}<div class="d-block invalid-feedback">{{errors.room}}</div>{{/errors.room}}
     </div>
+
     <div class="form-group">
         <label for="no">Login</label>
         <input type="text" class="form-control" id="login" name="login"  value="{{employee.login}}" required>
@@ -46,7 +52,7 @@
     </div>
     <div class="form-group">
         <label for="no">Heslo</label>
-        <input type="text" class="form-control" id="pass" name="pass" required>
+        <input type="password" class="form-control" id="pass" name="pass" >
         {{#errors.pass}}<div class="d-block invalid-feedback">{{errors.pass}}</div>{{/errors.pass}}
     </div>
     <div>
