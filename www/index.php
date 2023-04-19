@@ -6,6 +6,7 @@ class LoginPage extends Page
 {
     protected $error = null;
     protected ?Employee $user = null;
+    protected string $username = '';
 
     public function __construct()
     {
@@ -20,6 +21,7 @@ class LoginPage extends Page
             if (!(isset ($_POST["username"]) and isset($_POST["password"]))) {
                 throw new BadRequestException();
             }
+            $this->username = $_POST["username"];
             $user = Employee::getLogin($_POST["username"], $_POST["password"]);
 
             if ($user == null) {
@@ -42,7 +44,7 @@ class LoginPage extends Page
         $data = [
             "error" => $this->error,
             "login" => $this->user != null,
-            "user" => $this->user->login
+            "user" => $this->username
             ];
 
         $renderPage = MustacheProvider::get()->render("login", $data);

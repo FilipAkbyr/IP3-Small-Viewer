@@ -34,7 +34,7 @@
         <label for="room">Místnost</label>
         <select name="room" id="room" required>
             {{#employee_rooms}}
-                <option value="{{room_id}}" {{#selected}}selected{{/selected}}>{{no}}</option>
+                <option value="{{room_id}}" {{#selected}}selected{{/selected}}>{{name}}</option>
             {{/employee_rooms}}
         </select>
         {{#errors.room}}<div class="d-block invalid-feedback">{{errors.room}}</div>{{/errors.room}}

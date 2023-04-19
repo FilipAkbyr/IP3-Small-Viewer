@@ -23,10 +23,10 @@ class ExceptionPage extends Page
     {
         $data = [
             'code' => $this->exception->getCode(),
-            'message' => $this->exception->getMessage()
+            'message' => $this->exception->getMessage(),
+            //Kod od Pavla tento řádek pro pomoc s debugováním
+            'trace' => AppConfig::get('debug') ? $data['trace'] = $this->exception->getTrace() : null,
         ];
-
-
 
         return MustacheProvider::get()->render('exception', $data);
     }

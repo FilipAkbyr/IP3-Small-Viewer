@@ -2,7 +2,7 @@
 
 <form method="post">
     <label for="pass">Staré Heslo</label>
-    {{#errors.oldpass}}<div class="d-block invalid-feedback">{{errors.name}}</div>{{/errors.oldpass}}
+    {{#errors.oldpass}}<div class="d-block invalid-feedback">{{errors.oldpass}}</div>{{/errors.oldpass}}
     <input type="password" id="pass" name="oldpass">
     <label for="newpass">Nové Heslo</label>
     {{#errors.newpass}}<div class="d-block invalid-feedback">{{errors.newpass}}</div>{{/errors.newpass}}

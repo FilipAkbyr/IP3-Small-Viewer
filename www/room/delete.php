@@ -21,7 +21,7 @@ class RoomDeletePage extends CRUDPage
             throw new BadRequestException("Někdo bydlí v této místnosti");
         }
 
-        $keys = Key::allKeysOfRoom($room);
+        $keys = Key::allKeysOfRoom($room->room_id);
         foreach ($keys as $value)
         {
             Key::deleteById($value->key_id);

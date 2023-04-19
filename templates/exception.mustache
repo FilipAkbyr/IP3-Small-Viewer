@@ -1,1 +1,6 @@
 <h1 class="text-danger">Chyba {{code}}: {{message}}</h1>
+
+{{#trace}}
+    <span>at {{function}} in {{file}}:line {{line}}</span>
+    <br>
+{{/trace}}
